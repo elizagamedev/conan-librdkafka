@@ -135,17 +135,6 @@ class LibrdkafkaConan(ConanFile):
 ''',
 '#include "../config.h"')
 
-            # librdkafka inconsistently defines its exports definition, so this defines it according to rdkafkacpp.h
-            self.output.info('Patching src-cpp/CMakeLists.txt file')
-            tools.replace_in_file(os.sep.join([self.folder_name, 'src-cpp', 'CMakeLists.txt']),
-                'add_library(',
-                '''
-                add_definitions(-D{})
-                add_library(
-                '''.format('LIBRDKAFKACPP_EXPORTS' if self.options.shared else
-                           'LIBRDKAFKA_STATICLIB')
-            )
-
             files.mkdir("./{}/build".format(self.folder_name))
             with tools.chdir("./{}/build".format(self.folder_name)):
                 cmake = CMake(self)
