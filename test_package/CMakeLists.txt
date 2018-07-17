@@ -8,6 +8,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 find_package(LibRDKafka)
 
 find_package(Threads)
+find_package(ZLIB)
 
 message(INFO "libc++ =  ${LibRDKafka_LIBRARIES}")
 message(INFO "libc = ${LibRDKafka_C_LIBRARIES}")
@@ -15,7 +16,5 @@ message(INFO "libc = ${LibRDKafka_C_LIBRARIES}")
 add_executable(example example.cpp)
 target_link_libraries(
   example
-  ${LibRDKafka_LIBRARIES}
-  ${LibRDKafka_C_LIBRARIES}
-  ${CMAKE_THREAD_LIBS_INIT}
+  ${CONAN_LIBS}
 )
