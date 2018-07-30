@@ -41,7 +41,7 @@ class LibrdkafkaConan(ConanFile):
         if self.options.with_zlib:
             self.requires('zlib/1.2.11@conan/stable', private=True)
         if self.options.with_openssl:
-            self.requires('OpenSSL/1.0.2o@conan/stable')
+            self.requires('OpenSSL/1.1.0g@kacope/stable')
 
     def configure(self):
         # Remove these options on Windows because they require
